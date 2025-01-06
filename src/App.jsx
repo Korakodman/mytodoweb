@@ -24,19 +24,21 @@ function App() {
   return (
     <>
       <nav className="bg-blue-500 p-4 flex ">
-        <header className=" text-xl">To do List app</header>
+        <header className=" text-xl border-black border-2 p-2 bg-white rounded-md">
+          To do List app
+        </header>
       </nav>
-      <main className="p-4 mt-4 mx-4 bg-blue-100">
+      <main className="p-4 mt-2 mx-2 bg-blue-100  rounded-md">
         <section className="flex justify-center">
           <input
             type="text"
             placeholder="Add a new task"
-            className="border-2 p-2 focus:outline-none rounded-md"
+            className="border-2 p-2 w-[400px] focus:outline-none rounded-md"
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
           <button
-            className="bg-blue-200 hover:bg-blue-500 px-4 py-1 rounded-md mx-2 font-bold text-base"
+            className="bg-blue-300 hover:bg-blue-500   px-4 py-1 rounded-md mx-2 font-bold text-base"
             onClick={addtask}
           >
             Add
