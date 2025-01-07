@@ -21,6 +21,9 @@ function App() {
       setError(true);
     }
   };
+  const DeleteTask = (id) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id));
+  };
   return (
     <>
       <nav className="bg-blue-500 p-4 flex ">
@@ -48,7 +51,7 @@ function App() {
           {error ? "ใส่ข้อมูลด้วย" : ""}
         </div>
         <section className="grid justify-center">
-          <Tasks tasks={tasks} />
+          <Tasks tasks={tasks} DeleteTask={DeleteTask} />
         </section>
       </main>
     </>
