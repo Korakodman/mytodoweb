@@ -6,12 +6,15 @@ function Tasks({ tasks, DeleteTask, EditTask }) {
   const [editTask, setEditTask] = useState("");
   const dialog = useRef(null);
 
-  const openDialog = (isDelete, index) => {
+  const openDialog = (isDelete, index, task) => {
+    setEditTask(task.task);
     setCurrentForm(isDelete);
     setTaskId(index);
     dialog.current.showModal();
   };
-
+  const handleinput = (e) => {
+    setEditTask(e.target.value);
+  };
   const closeDialog = () => {
     setEditTask("");
     dialog.current.close();
@@ -41,13 +44,13 @@ function Tasks({ tasks, DeleteTask, EditTask }) {
             <div className="flex">
               <button
                 className="mx-2 p-2 bg-red-300 text-lg hover:bg-red-500 rounded-md"
-                onClick={() => openDialog(true, index)}
+                onClick={() => openDialog(true, index, task)}
               >
                 Delete
               </button>
               <button
                 className="bg-slate-300 p-2 text-lg w-[60px] hover:bg-slate-500 rounded-md"
-                onClick={() => openDialog(false, index)}
+                onClick={() => openDialog(false, index, task)}
               >
                 Edit
               </button>
@@ -60,7 +63,6 @@ function Tasks({ tasks, DeleteTask, EditTask }) {
       <dialog
         ref={dialog}
         className="w-[400px] h-fit rounded-md p-4 bg-white border-black"
-        onClick={closeDialog}
       >
         <form action="" onSubmit={formSubmit} className="">
           {currentForm
@@ -71,7 +73,7 @@ function Tasks({ tasks, DeleteTask, EditTask }) {
               type="text"
               className="w-[350px] px-2 py-1 mt-2 border-2 border-black rounded-md flex"
               value={editTask}
-              onChange={(e) => setEditTask(e.target.value)}
+              onChange={(e) => handleinput(e)}
             />
           )}
           <div className="flex justify-end p-2 mt-8">
