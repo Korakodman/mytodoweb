@@ -5,16 +5,12 @@ import "./App.css";
 import Tasks from "./Component/Tasks";
 
 function App() {
-  const [tasks, setTasks] = useState([
-    { id: 1, task: "Task 1" },
-    { id: 2, task: "Task 2" },
-    { id: 3, task: "Task 3" },
-  ]);
+  const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
   const addtask = () => {
     if (input) {
-      setTasks([...tasks, { id: tasks.length + 1, task: input }]);
+      setTasks([...tasks, { task: input }]);
       setInput("");
       setError(false);
     } else {
@@ -22,8 +18,24 @@ function App() {
     }
   };
   const DeleteTask = (id) => {
-    setTasks((prev) => prev.filter((task) => task.id !== id));
+    setTasks((prev) => prev.filter((task, index) => index !== id));
   };
+  const EditTask = (item, index) => {
+    if (!item) {
+      return;
+    }
+    const Newtask = item;
+    console.log(Newtask, index);
+    setTasks((prev) =>
+      prev.map((task, i) => {
+        if (i === index) {
+          return { task: Newtask };
+        }
+        return task;
+      })
+    );
+  };
+
   return (
     <>
       <nav className="bg-blue-500 p-4 flex ">
@@ -51,8 +63,13 @@ function App() {
           {error ? "ใส่ข้อมูลด้วย" : ""}
         </div>
         <section className="grid justify-center">
-          <Tasks tasks={tasks} DeleteTask={DeleteTask} />
+          <Tasks tasks={tasks} DeleteTask={DeleteTask} EditTask={EditTask} />
         </section>
+        {tasks.length === 0 && (
+          <div className="flex justify-center mt-4 text-red-400 font-bold text-2xl">
+            ไม่มีข้อมูลในขณะนี้
+          </div>
+        )}
       </main>
     </>
   );
