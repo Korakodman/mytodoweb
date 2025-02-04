@@ -25,7 +25,6 @@ function App() {
       return;
     }
     const Newtask = item;
-    console.log(Newtask, index);
     setTasks((prev) =>
       prev.map((task, i) => {
         if (i === index) {
@@ -53,7 +52,7 @@ function App() {
             onChange={(e) => setInput(e.target.value)}
           />
           <button
-            className="bg-blue-300 hover:bg-blue-500   px-4 py-1 rounded-md mx-2 font-bold text-base"
+            className="bg-blue-300 hover:bg-blue-500  border-2 border-gray-500 px-4 py-1 rounded-md mx-2 font-bold text-base"
             onClick={addtask}
           >
             Add

@@ -19,7 +19,11 @@ function Tasks({ tasks, DeleteTask, EditTask }) {
     setEditTask("");
     dialog.current.close();
   };
-
+  const clickoutside = (e) => {
+    if (e.target === dialog.current) {
+      closeDialog();
+    }
+  };
   const formSubmit = (e) => {
     e.preventDefault();
     if (currentForm) {
@@ -36,7 +40,7 @@ function Tasks({ tasks, DeleteTask, EditTask }) {
     <div>
       {tasks.map((task, index) => (
         <div
-          className=" bg-stone-300 p-2 m-2 w-[500px] rounded-md "
+          className=" bg-stone-300 p-2 m-2 w-[300px]  md:w-[500px] rounded-md "
           key={index}
         >
           <div className="flex p-2 justify-between text-center">
@@ -63,15 +67,25 @@ function Tasks({ tasks, DeleteTask, EditTask }) {
       <dialog
         ref={dialog}
         className="w-[400px] h-fit rounded-md p-4 bg-white border-black"
+        onClick={clickoutside}
       >
         <form action="" onSubmit={formSubmit} className="">
-          {currentForm
-            ? "Are you sure you want to delete this task?"
-            : "Edit the task"}
+          <p
+            className={
+              currentForm
+                ? ""
+                : "font-bold text-black bg-blue-400 w-[111px] p-2 rounded-md"
+            }
+          >
+            {" "}
+            {currentForm
+              ? "Are you sure you want to delete this task?"
+              : "Edit the task"}
+          </p>
           {!currentForm && (
             <input
               type="text"
-              className="w-[350px] px-2 py-1 mt-2 border-2 border-black rounded-md flex"
+              className="md:w-[350px]  w-[275px]  px-2 py-1 mt-2 border-2 border-black rounded-md flex"
               value={editTask}
               onChange={(e) => handleinput(e)}
             />
