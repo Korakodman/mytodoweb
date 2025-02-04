@@ -37,8 +37,8 @@ function App() {
 
   return (
     <>
-      <nav className="bg-blue-500 p-4 flex ">
-        <header className=" text-xl border-black border-2 p-2 bg-white rounded-md">
+      <nav className="bg-blue-500 p-4 flex  justify-center md:justify-normal">
+        <header className=" text-xl border-black border-2 p-2 bg-white rounded-md ">
           To do List app
         </header>
       </nav>
